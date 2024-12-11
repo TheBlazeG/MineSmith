@@ -17,11 +17,10 @@ public class Clicker : MonoBehaviour
         else Money.instance.UpdateMoney(moneyGained);
         Debug.Log("monke");
     }
-
     //mouseenter y exit sirven para efectos de hover como hacer el objeto mas grande o que brille
     private void OnMouseEnter()
     {
-        gameObject.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
+        gameObject.transform.localScale = new Vector3(1.2f,1.2f,1.2f);
     }
 
     private void OnMouseExit()
