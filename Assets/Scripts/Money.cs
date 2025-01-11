@@ -24,6 +24,7 @@ public class Money : MonoBehaviour
         if (PlayerPrefs.HasKey("PlayerMoney"))
         {
             money=PlayerPrefs.GetFloat("PlayerMoney");
+            money = 0;
             instance.counter.text = instance.money.ToString();
         }
         instance.counter = counter;
@@ -44,5 +45,11 @@ public class Money : MonoBehaviour
     {
         instance.money += gain*multiplier;
         instance.counter.text = instance.money.ToString();
+    }
+
+    public void SubtractCurrency(float amount)
+    {
+        money -= amount;
+        Debug.Log("Currency: " + money);
     }
 }
