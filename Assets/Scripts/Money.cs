@@ -24,6 +24,7 @@ public class Money : MonoBehaviour
         if (PlayerPrefs.HasKey("PlayerMoney"))
         {
             money=PlayerPrefs.GetFloat("PlayerMoney");
+            money = 0;
             instance.counter.text = instance.money.ToString();
         }
         instance.counter = counter;
@@ -32,7 +33,7 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        instance.counter.text = instance.money.ToString();
     } 
     
     private void OnApplicationQuit()
@@ -44,5 +45,11 @@ public class Money : MonoBehaviour
     {
         instance.money += gain;
         instance.counter.text = instance.money.ToString();
+    }
+
+    public void SubtractCurrency(float amount)
+    {
+        money -= amount;
+        Debug.Log("Currency: " + money);
     }
 }
