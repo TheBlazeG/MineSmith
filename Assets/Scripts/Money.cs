@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Money : MonoBehaviour
 {
-    public float money = 0;
+    public float money = 0,multiplier = 1;
     public static Money instance { get; private set; }
     [SerializeField] private TextMeshProUGUI counter;
 
@@ -32,7 +32,7 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        instance.counter.text = instance.money.ToString();
     } 
     
     private void OnApplicationQuit()
@@ -42,7 +42,7 @@ public class Money : MonoBehaviour
 
     public void UpdateMoney(float gain)
     {
-        instance.money += gain;
+        instance.money += gain*multiplier;
         instance.counter.text = instance.money.ToString();
     }
 }

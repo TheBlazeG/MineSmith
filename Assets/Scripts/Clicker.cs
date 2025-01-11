@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Clicker : MonoBehaviour
 {
-    private float moneyGained=1;
+    public float moneyGained=1;
 
     // Mouse up as button, basicamente jala como botón ahora xd
     private void OnMouseUpAsButton()
