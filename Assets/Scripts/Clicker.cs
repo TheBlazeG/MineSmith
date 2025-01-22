@@ -7,9 +7,20 @@ public class Clicker : MonoBehaviour
 {
     public float moneyGained=1;
 
-    
-    
+    public static Clicker instance { get; private set; }
 
+    private void Start()
+    {
+        if (instance == null && !CompareTag("Upgrade"))
+        {
+            instance = this;
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     // Mouse up as button, basicamente jala como botón ahora xd
     private void OnMouseUpAsButton()
     {

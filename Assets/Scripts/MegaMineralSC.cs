@@ -6,18 +6,20 @@ using Random = UnityEngine.Random;
 public class MegaMineralSC : MonoBehaviour
 {
     int rng;
-    Clicker clicker;
+    
     public int mineralMultiplier = 100;
-    // Start is called before the first frame update
+
+   
     private void OnMouseUpAsButton()
     {
-        
+        RandomEffect();
+        Destroy(gameObject);
     }
 
     //mouseenter y exit sirven para efectos de hover como hacer el objeto mas grande o que brille
     private void OnMouseEnter()
     {
-        gameObject.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
+        gameObject.transform.localScale = new Vector3(1.2f,1.2f,1.2f);
     }
 
     private void OnMouseExit()
@@ -53,7 +55,7 @@ public class MegaMineralSC : MonoBehaviour
     }
     public void BonusMoney()
     {
-        Money.instance.money += clicker.moneyGained * 500;
+        Money.instance.money += Clicker.instance.moneyGained * 500;
     }
     IEnumerator MultiplierBonus()
     {
