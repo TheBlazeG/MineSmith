@@ -13,7 +13,7 @@ public class Money : MonoBehaviour
     void Start()
     {
         if (instance == null)
-        {
+        { 
         instance = this;
         
         } 

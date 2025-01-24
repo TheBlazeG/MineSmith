@@ -9,6 +9,8 @@ public class MegaMineralSC : MonoBehaviour
     
     public int mineralMultiplier = 100;
 
+    
+
    
     private void OnMouseUpAsButton()
     {
@@ -19,12 +21,12 @@ public class MegaMineralSC : MonoBehaviour
     //mouseenter y exit sirven para efectos de hover como hacer el objeto mas grande o que brille
     private void OnMouseEnter()
     {
-        gameObject.transform.localScale = new Vector3(1.2f,1.2f,1.2f);
+        gameObject.transform.localScale = new Vector3(3.2f, 3.2f, 3.2f);
     }
 
     private void OnMouseExit()
     {
-        gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        gameObject.transform.localScale = new Vector3(3f, 3f, 3f);
     }
     public void RandomEffect()
     {
@@ -32,10 +34,12 @@ public class MegaMineralSC : MonoBehaviour
         switch (rng) 
         { 
         case 1:
-                BonusMoney();
+                RandomSpawnEvent(Clicker.instance.Dmoney);
                 break;
         case 2:
-                BonusMoney();
+
+                RandomSpawnEvent(Clicker.instance.DPunish);
+                Debug.Log("Punish");
                 break;
         case 3:
                 StartCoroutine(MultiplierBonus());
@@ -44,8 +48,38 @@ public class MegaMineralSC : MonoBehaviour
                 BonusMoney();
                 break;
         case 5:
+                
+                RandomSpawnEvent(Clicker.instance.Dmoney);
+                break;
+        case 6:
+                for (int i = 0; i < 3; i++)
+                    RandomSpawnEvent(Clicker.instance.DPunish);
+                Debug.Log("Punish");
+                break;
+        case 7:
                 BonusMoney();
                 break;
+        case 8 :
+                BonusMoney();
+                break;
+        case 9:
+                BonusMoney();
+                break;
+        case 10: for (int i = 0; i < 8; i++)
+                {
+                    int goodOrBad = Random.Range(1, 2);
+                    if (goodOrBad == 1)
+                    RandomSpawnEvent(Clicker.instance.Dmoney);
+                    else
+                    RandomSpawnEvent(Clicker.instance.DPunish);
+                }
+                Debug.Log("Jackpot");
+        RandomSpawnEvent(Clicker.instance.MegaMineral);
+                break;
+
+
+
+
         default:
                 BonusMoney();
                 break;
@@ -55,7 +89,7 @@ public class MegaMineralSC : MonoBehaviour
     }
     public void BonusMoney()
     {
-        Money.instance.money += Clicker.instance.moneyGained * 500;
+        Money.instance.money += Clicker.instance.moneyGained * 100;
     }
     IEnumerator MultiplierBonus()
     {
@@ -66,7 +100,12 @@ public class MegaMineralSC : MonoBehaviour
         Money.instance.multiplier = basemultiplier;
     }
         
-           
+    void RandomSpawnEvent(GameObject spawnObject)
+    {
+        Vector3 spawn = new Vector3(Random.Range(-7, 7), Random.Range(-4, 4), 0);
+        Debug.Log("EventoSpawn");
+        Instantiate(spawnObject, spawn, Quaternion.identity);
+    }
             
     
 }
