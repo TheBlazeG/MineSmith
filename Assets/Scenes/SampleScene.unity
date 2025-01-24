@@ -784,6 +784,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyGained: 1
+  MegaMineral: {fileID: 7384022596610497851, guid: 88ab92aa874911a43b72b0c472892139, type: 3}
+  Dmoney: {fileID: 7721625905680568544, guid: fb53f380567029b40924259bad4ff82d, type: 3}
+  DPunish: {fileID: 5003369436742525820, guid: 0090e49580440de4cab668d066f0d5d1, type: 3}
 --- !u!212 &858605521
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -863,7 +866,7 @@ GameObject:
   - component: {fileID: 1093383379}
   - component: {fileID: 1093383378}
   - component: {fileID: 1093383377}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Circle
   m_TagString: Clicker
   m_Icon: {fileID: 0}
@@ -886,7 +889,7 @@ BoxCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: -1
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -928,6 +931,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyGained: 1
+  MegaMineral: {fileID: 7384022596610497851, guid: 88ab92aa874911a43b72b0c472892139, type: 3}
+  Dmoney: {fileID: 7721625905680568544, guid: fb53f380567029b40924259bad4ff82d, type: 3}
+  DPunish: {fileID: 5003369436742525820, guid: 0090e49580440de4cab668d066f0d5d1, type: 3}
 --- !u!212 &1093383379
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -968,7 +974,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 718348adb318bf746afe0011e166e6aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

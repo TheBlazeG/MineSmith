@@ -6,6 +6,9 @@ using UnityEngine;
 public class Clicker : MonoBehaviour
 {
     public float moneyGained=1;
+    [SerializeField] public GameObject MegaMineral;
+    [SerializeField] public GameObject Dmoney;
+    [SerializeField] public GameObject DPunish;
 
     public static Clicker instance { get; private set; }
 
@@ -18,6 +21,7 @@ public class Clicker : MonoBehaviour
         }
         else
         {
+            if(!CompareTag("Upgrade"))
             Destroy(gameObject);
         }
     }
@@ -29,7 +33,6 @@ public class Clicker : MonoBehaviour
             Upgrade.instance.UpgradeClick();
         }
         else Money.instance.UpdateMoney(moneyGained);
-        Debug.Log("monke");
         gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
     }
     //mouseenter y exit sirven para efectos de hover como hacer el objeto mas grande o que brille
