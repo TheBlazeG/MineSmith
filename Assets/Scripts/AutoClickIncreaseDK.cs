@@ -43,7 +43,10 @@ public class AutoClickIncreaseDK : MonoBehaviour
     private void OnMouseDown()
     {
         gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-        TryUpgrade();
+        if (!GameObject.FindWithTag("AutoClicker"))
+            Debug.Log("You do not posses an autoclicker");
+        else
+            TryUpgrade();
     }
     private void OnMouseUpAsButton()
     {
