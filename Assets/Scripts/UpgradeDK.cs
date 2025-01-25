@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
+    public AudioSource upgradeSoundpickaxe;
     public float upgradeMultiplier = 1;
     public float upgradeCost;
     private Money moneyManager;
@@ -24,7 +26,7 @@ public class Upgrade : MonoBehaviour
             Destroy(gameObject);
         }
         if (PlayerPrefs.HasKey("PlayerMoney"))
-            instance.counter.text = instance.upgradeCost.ToString();
+            instance.counter.text = instance.upgradeCost.ToString("C", new CultureInfo("en-US"));
         instance.counter = counter;
 
         moneyManager = FindObjectOfType<Money>();
@@ -43,8 +45,12 @@ public class Upgrade : MonoBehaviour
         gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
         TryUpgrade();
     }
+    private void OnMouseUpAsButton()
+    {
+        gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+    }
 
-    private void OnMouseExit()
+        private void OnMouseExit()
     {
         gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
     }
@@ -57,7 +63,8 @@ public class Upgrade : MonoBehaviour
 
             upgradeCost = Mathf.CeilToInt(upgradeCost * upgradeMultiplier);
             GameObject.FindWithTag("Clicker").GetComponent<Clicker>().moneyGained++;
-            instance.counter.text = instance.upgradeCost.ToString();
+            instance.counter.text = instance.upgradeCost.ToString("C", new CultureInfo("en-US"));
+            upgradeSoundpickaxe.Play();
         }
         else
         {

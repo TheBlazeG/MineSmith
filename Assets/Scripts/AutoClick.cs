@@ -10,6 +10,16 @@ public class AutoClick : MonoBehaviour
 
     private Money moneyManager; // Reference to the Money script
 
+    public static AutoClick reference { get; private set; }
+
+    public void Awake()
+    {
+        if (reference == null)
+        {
+            reference = this;
+        }
+    }
+
     public void Start()
     {
         moneyManager = FindObjectOfType<Money>();
