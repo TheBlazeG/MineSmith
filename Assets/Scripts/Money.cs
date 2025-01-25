@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
 public class Money : MonoBehaviour
 {
-    public float money = 0;
+    public float money = 0,multiplier = 1;
     public static Money instance { get; private set; }
     [SerializeField] private TextMeshProUGUI counter;
 
@@ -13,7 +14,7 @@ public class Money : MonoBehaviour
     void Start()
     {
         if (instance == null)
-        {
+        { 
         instance = this;
         
         } 
@@ -33,7 +34,10 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        instance.counter.text = instance.money.ToString();
+        if (instance.money >= 1000000)
+            instance.counter.text = instance.money.ToString("E", new CultureInfo("en-US"));
+        else
+            instance.counter.text = instance.money.ToString("C", new CultureInfo("en-US"));
     } 
     
     private void OnApplicationQuit()
@@ -43,8 +47,11 @@ public class Money : MonoBehaviour
 
     public void UpdateMoney(float gain)
     {
-        instance.money += gain;
-        instance.counter.text = instance.money.ToString();
+        instance.money += gain*multiplier;
+        if (instance.money >= 1000000)
+            instance.counter.text = instance.money.ToString("E", new CultureInfo("en-US"));
+        else
+            instance.counter.text = instance.money.ToString("C", new CultureInfo("en-US"));
     }
 
     public void SubtractCurrency(float amount)

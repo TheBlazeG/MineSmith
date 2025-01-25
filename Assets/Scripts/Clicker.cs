@@ -6,19 +6,29 @@ using UnityEngine;
 public class Clicker : MonoBehaviour
 {
     public float moneyGained=1;
+    [SerializeField] public GameObject MegaMineral;
+    [SerializeField] public GameObject Dmoney;
+    [SerializeField] public GameObject DPunish;
 
-    
-    
+    public static Clicker instance { get; private set; }
 
+    private void Start()
+    {
+        if (instance == null && !CompareTag("Upgrade"))
+        {
+            instance = this;
+
+        }
+        else
+        {
+            if(!CompareTag("Upgrade"))
+            Destroy(gameObject);
+        }
+    }
     // Mouse up as button, basicamente jala como botón ahora xd
     private void OnMouseUpAsButton()
     {
-        if (this.CompareTag("Upgrade"))
-        {
-            Upgrade.instance.UpgradeClick();
-        }
-        else Money.instance.UpdateMoney(moneyGained);
-        Debug.Log("monke");
+        Money.instance.UpdateMoney(moneyGained);
         gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
     }
     //mouseenter y exit sirven para efectos de hover como hacer el objeto mas grande o que brille

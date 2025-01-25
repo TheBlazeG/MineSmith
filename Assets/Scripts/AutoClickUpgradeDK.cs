@@ -17,7 +17,7 @@ public class AutoClickUpgradeDK : MonoBehaviour
     [SerializeField] private TextMeshProUGUI counter;
     public static AutoClickUpgradeDK instance { get; private set; }
 
-    private void Start()
+    public void Start()
     {
         moneyManager = FindObjectOfType<Money>();
         if (moneyManager == null)
@@ -43,9 +43,19 @@ public class AutoClickUpgradeDK : MonoBehaviour
         }
     }
 
+    private void OnMouseEnter()
+    {
+        gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+    }
     private void OnMouseDown()
     {
+        gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
         TryUpgrade();
+    }
+
+    private void OnMouseExit()
+    {
+        gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     private void TryUpgrade()

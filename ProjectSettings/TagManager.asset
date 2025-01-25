@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Upgrade
   - Clicker
+  - AutoClicker
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BaseClicker
   - Water
   - UI
   - 
