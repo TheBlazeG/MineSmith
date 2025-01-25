@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7507790886877066337}
   m_Layer: 0
   m_Name: AutoClick
-  m_TagString: Untagged
+  m_TagString: AutoClicker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

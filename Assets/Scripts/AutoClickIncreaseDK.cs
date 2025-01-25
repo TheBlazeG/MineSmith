@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Upgrade : MonoBehaviour
+public class AutoClickIncreaseDK : MonoBehaviour
 {
     public float upgradeMultiplier = 1;
     public float upgradeCost;
     private Money moneyManager;
     [SerializeField] private TextMeshProUGUI counter;
-    public static Upgrade instance { get; private set; }
+    public static AutoClickIncreaseDK instance { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +56,7 @@ public class Upgrade : MonoBehaviour
             moneyManager.SubtractCurrency(upgradeCost);
 
             upgradeCost = Mathf.CeilToInt(upgradeCost * upgradeMultiplier);
-            GameObject.FindWithTag("Clicker").GetComponent<Clicker>().moneyGained++;
+            GameObject.FindWithTag("AutoClicker").GetComponent<AutoClick>().currencyIncrement++;
             instance.counter.text = instance.upgradeCost.ToString();
         }
         else

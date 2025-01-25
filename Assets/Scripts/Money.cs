@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -33,7 +34,10 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        instance.counter.text = instance.money.ToString();
+        if (instance.money >= 1000000)
+            instance.counter.text = instance.money.ToString("E", new CultureInfo("en-US"));
+        else
+            instance.counter.text = instance.money.ToString("C", new CultureInfo("en-US"));
     } 
     
     private void OnApplicationQuit()
@@ -44,7 +48,10 @@ public class Money : MonoBehaviour
     public void UpdateMoney(float gain)
     {
         instance.money += gain*multiplier;
-        instance.counter.text = instance.money.ToString();
+        if (instance.money >= 1000000)
+            instance.counter.text = instance.money.ToString("E", new CultureInfo("en-US"));
+        else
+            instance.counter.text = instance.money.ToString("C", new CultureInfo("en-US"));
     }
 
     public void SubtractCurrency(float amount)

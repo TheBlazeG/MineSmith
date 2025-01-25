@@ -9,7 +9,6 @@ public class AutoClick : MonoBehaviour
     public float forwardSpeed = 5f; // Speed of forward rotation
 
     private Money moneyManager; // Reference to the Money script
-    private bool isActive = false; // Determines if the script is active
 
     public void Start()
     {

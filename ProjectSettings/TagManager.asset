@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Upgrade
   - Clicker
+  - AutoClicker
   layers:
   - Default
   - TransparentFX
