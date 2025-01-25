@@ -8,10 +8,23 @@ public class MegaMineralSC : MonoBehaviour
     int rng;
     
     public int mineralMultiplier = 100;
+    float time;
 
-    
+    private void Start()
+    {
+        time = Time.time;
 
-   
+    }
+    private void Update()
+    {
+        if (Time.time - time > 5)
+        {
+            Money.instance.UpdateMoney(Clicker.instance.moneyGained * 2);
+            Destroy(gameObject);
+        }
+    }
+
+
     private void OnMouseUpAsButton()
     {
         RandomEffect();
@@ -30,7 +43,7 @@ public class MegaMineralSC : MonoBehaviour
     }
     public void RandomEffect()
     {
-    rng = Random.Range(1, 10);
+    rng = Random.Range(1, 11);
         switch (rng) 
         { 
         case 1:
@@ -57,10 +70,14 @@ public class MegaMineralSC : MonoBehaviour
                 Debug.Log("Punish");
                 break;
         case 7:
-                BonusMoney();
+                Debug.Log(":)");
+                if (AutoClick.reference == null) BonusMoney();
+                else BonusMoneyAuto();
                 break;
         case 8 :
-                BonusMoney();
+                Debug.Log(":)");
+                if (AutoClick.reference == null) BonusMoney();
+                else BonusMoneyAuto();
                 break;
         case 9:
                 BonusMoney();
@@ -86,11 +103,20 @@ public class MegaMineralSC : MonoBehaviour
         
         
         }
+        Debug.Log(rng);
     }
     public void BonusMoney()
     {
-        Money.instance.money += Clicker.instance.moneyGained * 100;
+        Money.instance.money += Clicker.instance.moneyGained * 30;
+        Debug.Log("BonusMoney");
     }
+
+    public void BonusMoneyAuto()
+    {
+        Money.instance.money += AutoClick.reference.currencyIncrement * 30;
+        Debug.Log("BonusMoneyAuto");
+    }
+
     IEnumerator MultiplierBonus()
     {
         float basemultiplier=Money.instance.multiplier;

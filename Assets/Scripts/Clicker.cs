@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using UnityEditor.EditorTools;
+
 using UnityEngine;
 public class Clicker : MonoBehaviour
 {
     public float moneyGained=1;
+    public AudioSource ClickingSound;
     [SerializeField] public GameObject MegaMineral;
     [SerializeField] public GameObject Dmoney;
     [SerializeField] public GameObject DPunish;
@@ -30,6 +31,7 @@ public class Clicker : MonoBehaviour
     {
         Money.instance.UpdateMoney(moneyGained);
         gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        ClickingSound.Play();
     }
     //mouseenter y exit sirven para efectos de hover como hacer el objeto mas grande o que brille
     private void OnMouseEnter()

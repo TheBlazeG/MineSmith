@@ -29,7 +29,7 @@ public class Events : MonoBehaviour
             Vector3 spawn = new Vector3(Random.Range(-7,7), Random.Range(-4, 4), 0);
             Debug.Log("Evento");
             Instantiate(Megamineral, spawn,Quaternion.identity);
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(30);
         }
     }
 }

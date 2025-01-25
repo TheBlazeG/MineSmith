@@ -1,8 +1,13 @@
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
 public class AutoClickUpgradeDK : MonoBehaviour
 {
+    //public GameObject AutoUpgrade;
+    //public GameObject AutoUpgradeText;
+    //public GameObject AutoUpgradeCost;
+    public AudioSource upgradeSoundMoreAuto;
     public GameObject objectPrefab; // Prefab for the objects to instantiate
     public Transform rotationCenter; // Center of rotation for instantiated objects
     public float baseDistance = 2f; // Base distance multiplier for instantiating objects
@@ -39,7 +44,7 @@ public class AutoClickUpgradeDK : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("PlayerMoney"))
         {
-            instance.counter.text = instance.currentUpgradeCost.ToString();
+            instance.counter.text = instance.currentUpgradeCost.ToString("C", new CultureInfo("en-US"));
         }
     }
 
@@ -51,6 +56,10 @@ public class AutoClickUpgradeDK : MonoBehaviour
     {
         gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
         TryUpgrade();
+    }
+    private void OnMouseUpAsButton()
+    {
+        gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
     }
 
     private void OnMouseExit()
@@ -67,10 +76,12 @@ public class AutoClickUpgradeDK : MonoBehaviour
 
             // Increase the upgrade cost
             currentUpgradeCost = Mathf.CeilToInt(currentUpgradeCost * upgradeCostMultiplier);
-            instance.counter.text = instance.currentUpgradeCost.ToString();
+            instance.counter.text = instance.currentUpgradeCost.ToString("C", new CultureInfo("en-US"));
 
+            upgradeSoundMoreAuto.Play();
             // Instantiate the new object
             InstantiateObject();
+
         }
         else
         {
@@ -80,6 +91,7 @@ public class AutoClickUpgradeDK : MonoBehaviour
 
     private void InstantiateObject()
     {
+        
         instantiatedCount++;
 
         // Calculate angle and distance

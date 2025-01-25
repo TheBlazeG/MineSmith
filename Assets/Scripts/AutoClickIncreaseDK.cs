@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
 public class AutoClickIncreaseDK : MonoBehaviour
 {
+    public AudioSource upgradeSoundAutoamount;
     public float upgradeMultiplier = 1;
     public float upgradeCost;
     private Money moneyManager;
@@ -24,7 +26,7 @@ public class AutoClickIncreaseDK : MonoBehaviour
             Destroy(gameObject);
         }
         if (PlayerPrefs.HasKey("PlayerMoney"))
-            instance.counter.text = instance.upgradeCost.ToString();
+            instance.counter.text = instance.upgradeCost.ToString("C", new CultureInfo("en-US"));
         instance.counter = counter;
 
         moneyManager = FindObjectOfType<Money>();
@@ -41,7 +43,14 @@ public class AutoClickIncreaseDK : MonoBehaviour
     private void OnMouseDown()
     {
         gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-        TryUpgrade();
+        if (!GameObject.FindWithTag("AutoClicker"))
+            Debug.Log("You do not posses an autoclicker");
+        else
+            TryUpgrade();
+    }
+    private void OnMouseUpAsButton()
+    {
+        gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
     }
 
     private void OnMouseExit()
@@ -57,7 +66,8 @@ public class AutoClickIncreaseDK : MonoBehaviour
 
             upgradeCost = Mathf.CeilToInt(upgradeCost * upgradeMultiplier);
             GameObject.FindWithTag("AutoClicker").GetComponent<AutoClick>().currencyIncrement++;
-            instance.counter.text = instance.upgradeCost.ToString();
+            instance.counter.text = instance.upgradeCost.ToString("C", new CultureInfo("en-US"));
+            upgradeSoundAutoamount.Play();
         }
         else
         {
